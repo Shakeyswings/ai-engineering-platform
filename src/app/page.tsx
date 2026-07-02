@@ -7,14 +7,19 @@ const cards = [
     href: "/missions/new",
   },
   {
-    title: "Mission Workspace",
-    description: "Open saved missions and review generated outputs.",
-    href: "/workflows",
-  },
-  {
     title: "Workflow Library",
     description: "Reuse successful workflows and saved mission patterns.",
     href: "/workflows",
+  },
+  {
+    title: "Supabase Auth",
+    description: "Sign in, sign up, and prepare persistent user storage.",
+    href: "/auth",
+  },
+  {
+    title: "Settings",
+    description: "Check environment variables and integration readiness.",
+    href: "/settings",
   },
 ];
 
@@ -43,7 +48,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {cards.map((card) => (
             <Link
               key={card.title}
@@ -57,15 +62,16 @@ export default function Home() {
         </div>
 
         <div className="rounded-2xl border border-cyan-900 bg-cyan-950/40 p-6">
-          <h2 className="text-2xl font-semibold">Current Build Status</h2>
+          <h2 className="text-2xl font-semibold">Phase 1 Build Status</h2>
           <ul className="mt-4 space-y-2 text-slate-300">
-            <li>App scaffold complete</li>
             <li>Mission Dashboard installed</li>
             <li>New Mission form installed</li>
             <li>Mission Workspace installed</li>
             <li>Workflow Library installed</li>
-            <li>OpenAI route stub installed</li>
-            <li>Supabase-ready data model prepared</li>
+            <li>Supabase client scaffold installed</li>
+            <li>Auth page installed</li>
+            <li>Database schema generated</li>
+            <li>Next step: create Supabase project and add keys</li>
           </ul>
         </div>
       </section>
