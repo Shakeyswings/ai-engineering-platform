@@ -1,49 +1,71 @@
-﻿export default function Home() {
+﻿import Link from "next/link";
+
+const cards = [
+  {
+    title: "New Mission",
+    description: "Define goals, context, constraints, and success criteria.",
+    href: "/missions/new",
+  },
+  {
+    title: "Mission Workspace",
+    description: "Open saved missions and review generated outputs.",
+    href: "/workflows",
+  },
+  {
+    title: "Workflow Library",
+    description: "Reuse successful workflows and saved mission patterns.",
+    href: "/workflows",
+  },
+];
+
+export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white p-8">
-      <section className="mx-auto max-w-6xl space-y-8">
-        <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-cyan-400">
-            Master Control Center
-          </p>
-          <h1 className="mt-4 text-5xl font-bold">
-            AI Engineering Platform
-          </h1>
-          <p className="mt-4 max-w-3xl text-slate-300">
-            Turn user goals into evaluated, documented, reusable AI workflows.
-          </p>
+    <main className="min-h-screen bg-slate-950 text-white">
+      <section className="mx-auto max-w-7xl space-y-10 p-8">
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <p className="text-sm uppercase tracking-[0.3em] text-cyan-400">
+              Master Control Center
+            </p>
+            <h1 className="mt-4 text-5xl font-bold">
+              AI Engineering Platform
+            </h1>
+            <p className="mt-4 max-w-3xl text-slate-300">
+              Turn user goals into evaluated, documented, reusable AI workflows.
+            </p>
+          </div>
+
+          <Link
+            href="/missions/new"
+            className="rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 hover:bg-cyan-300"
+          >
+            Create Mission
+          </Link>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h2 className="text-xl font-semibold">New Mission</h2>
-            <p className="mt-2 text-slate-400">
-              Define goals, context, constraints, and success criteria.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h2 className="text-xl font-semibold">Research Engine</h2>
-            <p className="mt-2 text-slate-400">
-              Convert questions into evidence-based findings and options.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h2 className="text-xl font-semibold">App Builder</h2>
-            <p className="mt-2 text-slate-400">
-              Turn app ideas into pages, data models, backend plans, and MVP scope.
-            </p>
-          </div>
+          {cards.map((card) => (
+            <Link
+              key={card.title}
+              href={card.href}
+              className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:border-cyan-600"
+            >
+              <h2 className="text-xl font-semibold">{card.title}</h2>
+              <p className="mt-2 text-slate-400">{card.description}</p>
+            </Link>
+          ))}
         </div>
 
         <div className="rounded-2xl border border-cyan-900 bg-cyan-950/40 p-6">
           <h2 className="text-2xl font-semibold">Current Build Status</h2>
           <ul className="mt-4 space-y-2 text-slate-300">
-            <li>✅ App scaffold complete</li>
-            <li>✅ Next.js server running</li>
-            <li>✅ Master Control Center docs copied</li>
-            <li>⏳ Next step: build New Mission page</li>
+            <li>App scaffold complete</li>
+            <li>Mission Dashboard installed</li>
+            <li>New Mission form installed</li>
+            <li>Mission Workspace installed</li>
+            <li>Workflow Library installed</li>
+            <li>OpenAI route stub installed</li>
+            <li>Supabase-ready data model prepared</li>
           </ul>
         </div>
       </section>
