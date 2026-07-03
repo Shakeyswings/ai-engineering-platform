@@ -1,24 +1,50 @@
 @import "tailwindcss";
 
 :root {
+  /* Backgrounds */
   --bg-primary: #0F1419;
   --bg-secondary: #1A1F2E;
   --bg-tertiary: #242D3D;
   --bg-hover: #2D3748;
+
+  /* Accents */
   --accent-cyan: #00D4FF;
   --accent-teal: #00D9A3;
   --accent-purple: #7C5AFA;
+
+  /* Semantic */
   --color-success: #2ED573;
   --color-warning: #FFA502;
   --color-danger: #FF4757;
   --color-info: #00D4FF;
+
+  /* Text */
   --text-primary: #FFFFFF;
   --text-secondary: #A8B0C0;
   --text-tertiary: #6B7280;
   --text-inverted: #0F1419;
+
+  /* Borders */
   --border-default: #2D3748;
+  --border: #2D3748;
   --border-accent: #00D4FF;
   --border-danger: #FF4757;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 300ms ease-out;
+  --transition-slow: 600ms ease-out;
+
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
 }
@@ -53,7 +79,36 @@ textarea {
   font: inherit;
 }
 
+button,
+a,
+[role="button"],
+input,
+select,
+textarea {
+  outline-color: var(--accent-cyan);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
 ::selection {
   background: var(--accent-cyan);
   color: var(--text-inverted);
+}
+
+@keyframes uiPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes uiSlideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes uiScaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
