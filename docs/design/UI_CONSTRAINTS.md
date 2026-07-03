@@ -1,0 +1,193 @@
+# AI Engineering Platform - UI/UX Design Constraints
+
+This document is the visual law. Every component, screen, and interaction must comply with these rules.
+
+## Color Palette
+
+```css
+--bg-primary: #0F1419;
+--bg-secondary: #1A1F2E;
+--bg-tertiary: #242D3D;
+--bg-hover: #2D3748;
+
+--accent-cyan: #00D4FF;
+--accent-teal: #00D9A3;
+--accent-purple: #7C5AFA;
+
+--color-success: #2ED573;
+--color-warning: #FFA502;
+--color-danger: #FF4757;
+--color-info: #00D4FF;
+
+--text-primary: #FFFFFF;
+--text-secondary: #A8B0C0;
+--text-tertiary: #6B7280;
+--text-inverted: #0F1419;
+
+--border-default: #2D3748;
+--border: #2D3748;
+--border-accent: #00D4FF;
+--border-danger: #FF4757;
+```
+
+Rule: never introduce new colors without updating this document first.
+
+## Typography
+
+Font stack:
+
+```css
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+```
+
+Type scale:
+
+| Use Case | Size | Weight | Line Height |
+|---|---:|---:|---:|
+| H1 | 48px | 700 | 1.1 |
+| H2 | 32px | 700 | 1.2 |
+| H3 | 24px | 600 | 1.3 |
+| H4 | 18px | 600 | 1.4 |
+| Body | 14px | 400 | 1.6 |
+| Small / Label | 12px | 500 | 1.5 |
+| Tiny / Meta | 11px | 400 | 1.4 |
+| Code | 12px | 400 | 1.5 |
+
+Rules:
+
+- Use Inter everywhere except code blocks.
+- Maintain contrast ratio of at least 4.5:1.
+- Do not use font sizes outside the scale.
+- All caps only for labels and system messages.
+
+## Spacing Grid
+
+All measurements must use a 4px base grid.
+
+- 4px: micro
+- 8px: tight
+- 12px: small
+- 16px: base
+- 24px: medium
+- 32px: large
+- 48px: XL
+- 64px: XXL
+
+## Cards
+
+Cards must use:
+
+- Background: `--bg-secondary`
+- Border: 1px solid `--border-default`
+- Border radius: 8px
+- Padding: 16px or 24px
+- Shadow: `0 4px 12px rgba(0, 0, 0, 0.3)`
+- Hover: border shifts to `--accent-cyan`
+- Transition: 150ms ease-out
+
+Do not use thick shadows, semi-transparent overlays, or rounded corners above 8px for cards.
+
+## Buttons
+
+Primary:
+
+- Background: `--accent-cyan`
+- Text: `--text-inverted`
+- Padding: 12px horizontal x 16px vertical
+- Radius: 8px
+- Font: 14px / 600
+- Hover: brightness 110
+- Active: brightness 90
+- Disabled: opacity 50
+- Transition: 150ms ease-out
+
+Secondary:
+
+- Background: `--border-default`
+- Text: `--text-primary`
+- Border: 1px solid `--border-default`
+
+Danger:
+
+- Background: `--color-danger`
+- Text: `--text-primary`
+- Requires explicit confirmation when destructive.
+
+Every button must have a visible focus state.
+
+## Inputs
+
+Inputs must use:
+
+- Background: `--bg-tertiary`
+- Border: 1px solid `--border-default`
+- Border radius: 6px
+- Padding: 12px
+- Font: 14px / 400
+- Text: `--text-primary`
+- Placeholder: `--text-tertiary`
+- Focus: 2px solid `--border-accent`
+- Error: 2px solid `--color-danger`
+
+## Status Indicators
+
+Status must never rely on color alone. Pair color with text and/or icon.
+
+Approved/deployed: success.
+Review/pending: warning.
+Error/blocked: danger.
+Info/in progress: cyan.
+
+## Modals
+
+- Overlay: `rgba(15, 20, 25, 0.8)`
+- Container: `--bg-secondary`
+- Border: 1px solid `--border-default`
+- Radius: 12px
+- Padding: 24px
+- Max width: 500px default, 600px form
+- Shadow: `0 20px 25px rgba(0, 0, 0, 0.5)`
+
+## Motion
+
+- Hover/focus: 100ms
+- Button/color changes: 150ms
+- Modal/card expansion: 300ms
+- Reward animation: 600ms
+- Never exceed 1000ms.
+
+## Responsive Rules
+
+- Mobile: below 768px
+- Tablet: 768px to 1439px
+- Desktop: 1440px and above
+
+Sidebar:
+
+- Desktop: 240px fixed visible
+- Tablet: 60px collapsed, expands on hover
+- Mobile: hidden behind hamburger
+
+Touch targets must be at least 44px.
+
+## Accessibility
+
+- Contrast ratio must be 4.5:1 or higher.
+- Interactive elements must have focus rings.
+- Keyboard navigation must work.
+- Use semantic HTML.
+- Use ARIA where needed.
+- Form labels must be linked with `htmlFor`.
+
+## Anti-Patterns
+
+Never use:
+
+- New colors.
+- Arbitrary font sizes.
+- Spacing outside the 4px grid.
+- Hidden focus rings.
+- Animation over 600ms for normal interactions.
+- Cute, playful UI that undermines command-center tone.
+- Rounded corners above 12px.
+- Color-only state communication.
