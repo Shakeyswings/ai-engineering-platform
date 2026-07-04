@@ -11,16 +11,16 @@ export const missionStatusSchema = z.enum([
 ]);
 
 export const missionInputSchema = z.object({
-  id: z.string().min(1),
-  title: z.string().default("Untitled Mission"),
-  objective: z.string().default(""),
-  context: z.string().default(""),
-  constraints: z.string().default(""),
-  successCriteria: z.string().default(""),
-  priority: prioritySchema.default("Medium"),
-  status: missionStatusSchema.default("Draft"),
-  createdAt: z.string().default(""),
-  updatedAt: z.string().default(""),
+  id: z.string().optional().default(""),
+  title: z.string().optional().default("Untitled Mission"),
+  objective: z.string().optional().default(""),
+  context: z.string().optional().default(""),
+  constraints: z.string().optional().default(""),
+  successCriteria: z.string().optional().default(""),
+  priority: prioritySchema.optional().default("Medium"),
+  status: missionStatusSchema.optional().default("Draft"),
+  createdAt: z.string().optional().default(""),
+  updatedAt: z.string().optional().default(""),
 });
 
 export const benchmarkSchema = z.object({
@@ -51,6 +51,11 @@ export const missionOutputSchema = z.object({
 
 export type MissionInputContract = z.infer<typeof missionInputSchema>;
 export type MissionOutputContract = z.infer<typeof missionOutputSchema>;
+
+export function normalizeMissionInput(value: unknown): MissionInputContract {
+  const parsed = missionInputSchema.safeParse(value ?? {});
+  return parsed.success ? parsed.data : missionInputSchema.parse({});
+}
 
 export function normalizeMissionOutput(value: unknown, fallback: MissionOutputContract): MissionOutputContract {
   const parsed = missionOutputSchema.safeParse(value);
