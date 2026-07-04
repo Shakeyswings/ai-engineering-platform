@@ -1,8 +1,16 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import {
+  missionInputSchema,
+  normalizeMissionOutput,
+  type MissionInputContract,
+  type MissionOutputContract,
+} from "@/lib/mission-contracts";
 
 export async function POST(request: Request) {
-  const mission = await request.json();
+  const rawMission = await request.json();
+  const mission = missionInputSchema.parse(rawMission);
+  const fallback = createFallbackOutput(mission);
 
   if (process.env.OPENAI_API_KEY) {
     try {
@@ -23,6 +31,23 @@ export async function POST(request: Request) {
             content: JSON.stringify({
               instruction:
                 "Generate a structured mission plan with evaluation, risks, patch, regression tests, and next actions.",
+              output_contract: [
+                "mission",
+                "status",
+                "summary",
+                "evidence",
+                "assumptions",
+                "architecture",
+                "implementation",
+                "risks",
+                "confidence",
+                "benchmark",
+                "war_test",
+                "patch",
+                "regression_tests",
+                "documentation_updated",
+                "next_actions",
+              ],
               mission,
             }),
           },
@@ -31,22 +56,16 @@ export async function POST(request: Request) {
 
       const text = response.output_text ?? "";
       const parsed = JSON.parse(text);
-      return NextResponse.json(parsed);
+      return NextResponse.json(normalizeMissionOutput(parsed, fallback));
     } catch {
-      return NextResponse.json(createFallbackOutput(mission));
+      return NextResponse.json(fallback);
     }
   }
 
-  return NextResponse.json(createFallbackOutput(mission));
+  return NextResponse.json(fallback);
 }
 
-function createFallbackOutput(mission: {
-  title?: string;
-  objective?: string;
-  context?: string;
-  constraints?: string;
-  successCriteria?: string;
-}) {
+function createFallbackOutput(mission: MissionInputContract): MissionOutputContract {
   return {
     mission: mission.title || "Untitled Mission",
     status: "Generated",
@@ -99,9 +118,7 @@ function createFallbackOutput(mission: {
       "Missing OpenAI key should not crash the app.",
       "Generated output must preserve required contract fields.",
     ],
-    documentation_updated: [
-      "Mission generated using MVP local workflow.",
-    ],
+    documentation_updated: ["Mission generated using MVP local workflow."],
     next_actions: [
       "Connect Supabase.",
       "Add OpenAI API key.",
