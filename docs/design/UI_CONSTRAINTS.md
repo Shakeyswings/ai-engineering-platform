@@ -53,6 +53,17 @@ Type scale:
 | Meta | 11px | 400 | 1.4 |
 | Code | 12px | 400 | 1.5 |
 
+| Small / Label | 12px | 500 | 1.5 |
+| Tiny / Meta | 11px | 400 | 1.4 |
+| Code | 12px | 400 | 1.5 |
+
+Rules:
+
+- Use Inter everywhere except code blocks.
+- Maintain contrast ratio of at least 4.5:1.
+- Do not use font sizes outside the scale.
+- All caps only for labels and system messages.
+
 ## Spacing Grid
 
 All measurements must use a 4px base grid.
@@ -69,6 +80,9 @@ All measurements must use a 4px base grid.
 ## Component Rules
 
 Cards:
+## Cards
+
+Cards must use:
 
 - Background: `--bg-secondary`
 - Border: 1px solid `--border-default`
@@ -87,12 +101,73 @@ Buttons:
 - Visible focus state required
 
 Inputs:
+- Shadow: `0 4px 12px rgba(0, 0, 0, 0.3)`
+- Hover: border shifts to `--accent-cyan`
+- Transition: 150ms ease-out
+
+Do not use thick shadows, semi-transparent overlays, or rounded corners above 8px for cards.
+
+## Buttons
+
+Primary:
+
+- Background: `--accent-cyan`
+- Text: `--text-inverted`
+- Padding: 12px horizontal x 16px vertical
+- Radius: 8px
+- Font: 14px / 600
+- Hover: brightness 110
+- Active: brightness 90
+- Disabled: opacity 50
+- Transition: 150ms ease-out
+
+Secondary:
+
+- Background: `--border-default`
+- Text: `--text-primary`
+- Border: 1px solid `--border-default`
+
+Danger:
+
+- Background: `--color-danger`
+- Text: `--text-primary`
+- Requires explicit confirmation when destructive.
+
+Every button must have a visible focus state.
+
+## Inputs
+
+Inputs must use:
 
 - Background: `--bg-tertiary`
 - Border: 1px solid `--border-default`
 - Border radius: 6px
 - Padding: 12px
 - Focus: 2px solid `--border-accent`
+- Font: 14px / 400
+- Text: `--text-primary`
+- Placeholder: `--text-tertiary`
+- Focus: 2px solid `--border-accent`
+- Error: 2px solid `--color-danger`
+
+## Status Indicators
+
+Status must never rely on color alone. Pair color with text and/or icon.
+
+Approved/deployed: success.
+Review/pending: warning.
+Error/blocked: danger.
+Info/in progress: cyan.
+
+## Modals
+
+- Overlay: `rgba(15, 20, 25, 0.8)`
+- Container: `--bg-secondary`
+- Border: 1px solid `--border-default`
+- Radius: 12px
+- Padding: 24px
+- Max width: 500px default, 600px form
+- Shadow: `0 20px 25px rgba(0, 0, 0, 0.5)`
 
 ## Motion
 
@@ -102,6 +177,20 @@ Inputs:
 - Reward animation: 600ms
 - Never exceed 1000ms.
 
+## Responsive Rules
+
+- Mobile: below 768px
+- Tablet: 768px to 1439px
+- Desktop: 1440px and above
+
+Sidebar:
+
+- Desktop: 240px fixed visible
+- Tablet: 60px collapsed, expands on hover
+- Mobile: hidden behind hamburger
+
+Touch targets must be at least 44px.
+
 ## Accessibility
 
 - Contrast ratio must be 4.5:1 or higher.
@@ -110,6 +199,8 @@ Inputs:
 - Use semantic HTML.
 - Form labels must use `htmlFor`.
 - Do not rely on color alone to communicate state.
+- Use ARIA where needed.
+- Form labels must be linked with `htmlFor`.
 
 ## Anti-Patterns
 
@@ -120,5 +211,6 @@ Never use:
 - Spacing outside the 4px grid.
 - Hidden focus rings.
 - Animation over 600ms for normal interactions.
+- Cute, playful UI that undermines command-center tone.
 - Rounded corners above 12px.
 - Color-only state communication.

@@ -29,6 +29,14 @@ Constraints:
 - Use `lucide-react` icons.
 - Do not introduce gradients, playful UI, or excessive shadows.
 
+Acceptance:
+
+- Dashboard renders without console errors.
+- Components are responsive on desktop and tablet.
+- KPI cards have hover drill-down affordance.
+- Mission cards route to mission detail pages.
+- Pending approvals are visually prominent.
+
 ## Phase 2 - Mission Creation Form
 
 Target: Build a guided mission creation experience with validation and progress tracking.
@@ -94,3 +102,9 @@ After each phase:
 - Verify responsive behavior.
 - Verify animations are below 600ms.
 - Commit with a focused message.
+
+Recommended commit messages:
+
+- `ui: add dashboard command center`
+- `ui: add mission creation form system`
+- `ui: add approval and evaluation workflow components`

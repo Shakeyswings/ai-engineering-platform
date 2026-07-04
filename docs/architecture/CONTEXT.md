@@ -138,6 +138,25 @@ Expected flow:
 
 Fill form -> generate mission plan -> preview -> edit/approve -> save -> evaluate -> deploy.
 
+## Data Flow
+
+Mission lifecycle:
+
+1. Create.
+2. Review.
+3. Approve.
+4. Execute.
+5. Evaluate.
+6. Deploy.
+7. Archive.
+
+Approval flow:
+
+1. Risk checks run.
+2. User sees what, why, risk, and recommendation.
+3. User approves, rejects, or requests changes.
+4. Audit log is created.
+
 ## Build Conventions
 
 Recommended structure:
@@ -152,6 +171,8 @@ src/
   utils/
   styles/
 ```
+
+Component naming must be descriptive. Avoid abbreviations unless standard.
 
 Business logic should live in services, not page components.
 
@@ -173,3 +194,13 @@ Use Supabase through a service layer.
 3. Approval gates and evaluation detail pages.
 4. Real-time subscriptions and live activity feed.
 5. Mobile responsiveness and performance tuning.
+
+## Success Criteria
+
+- Dashboard loads in under 2 seconds.
+- Mission form can be completed in under 3 minutes.
+- Approval flow supports one-click decision after context review.
+- Major entities have detail pages.
+- Gamification is visible but not distracting.
+- Accessibility score target: Lighthouse 90 or higher.
+- Zero console errors.
