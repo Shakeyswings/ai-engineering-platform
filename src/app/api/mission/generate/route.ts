@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import {
-  missionInputSchema,
+  normalizeMissionInput,
   normalizeMissionOutput,
   type MissionInputContract,
   type MissionOutputContract,
 } from "@/lib/mission-contracts";
 
 export async function POST(request: Request) {
-  const rawMission = await request.json();
-  const mission = missionInputSchema.parse(rawMission);
+  const rawMission = await request.json().catch(() => ({}));
+  const mission = normalizeMissionInput(rawMission);
   const fallback = createFallbackOutput(mission);
 
   if (process.env.OPENAI_API_KEY) {
