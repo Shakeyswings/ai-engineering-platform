@@ -9,6 +9,9 @@ Use this file while coding. It is the short-form checklist for the platform desi
 --bg-secondary: #1A1F2E;
 --bg-tertiary: #242D3D;
 --bg-hover: #2D3748;
+--accent-cyan: #00D4FF;
+--accent-teal: #00D9A3;
+--accent-purple: #7C5AFA;
 
 --accent-cyan: #00D4FF;
 --accent-teal: #00D9A3;
@@ -149,3 +152,14 @@ Font: `Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
 - [ ] Animations are below 600ms.
 - [ ] Browser console is clean.
 - [ ] Component works in isolation.
+
+## Never Do
+
+- No new colors.
+- No font sizes outside the type scale.
+- No spacing outside the 4px grid.
+- No hidden focus rings.
+- No animation above 600ms for normal interactions.
+- No gradients unless design approval explicitly changes `UI_CONSTRAINTS.md`.
+- No rounded corners above 12px.
+- No color-only state indicators.

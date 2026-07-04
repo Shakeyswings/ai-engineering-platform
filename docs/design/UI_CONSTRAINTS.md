@@ -49,6 +49,10 @@ Type scale:
 | H3 | 24px | 600 | 1.3 |
 | H4 | 18px | 600 | 1.4 |
 | Body | 14px | 400 | 1.6 |
+| Label | 12px | 500 | 1.5 |
+| Meta | 11px | 400 | 1.4 |
+| Code | 12px | 400 | 1.5 |
+
 | Small / Label | 12px | 500 | 1.5 |
 | Tiny / Meta | 11px | 400 | 1.4 |
 | Code | 12px | 400 | 1.5 |
@@ -73,6 +77,9 @@ All measurements must use a 4px base grid.
 - 48px: XL
 - 64px: XXL
 
+## Component Rules
+
+Cards:
 ## Cards
 
 Cards must use:
@@ -81,6 +88,19 @@ Cards must use:
 - Border: 1px solid `--border-default`
 - Border radius: 8px
 - Padding: 16px or 24px
+- Hover: border shifts to `--accent-cyan`
+- Transition: 150ms ease-out
+
+Buttons:
+
+- Primary background: `--accent-cyan`
+- Primary text: `--text-inverted`
+- Padding: 12px horizontal x 16px vertical
+- Radius: 8px
+- Font: 14px / 600
+- Visible focus state required
+
+Inputs:
 - Shadow: `0 4px 12px rgba(0, 0, 0, 0.3)`
 - Hover: border shifts to `--accent-cyan`
 - Transition: 150ms ease-out
@@ -123,6 +143,7 @@ Inputs must use:
 - Border: 1px solid `--border-default`
 - Border radius: 6px
 - Padding: 12px
+- Focus: 2px solid `--border-accent`
 - Font: 14px / 400
 - Text: `--text-primary`
 - Placeholder: `--text-tertiary`
@@ -176,6 +197,8 @@ Touch targets must be at least 44px.
 - Interactive elements must have focus rings.
 - Keyboard navigation must work.
 - Use semantic HTML.
+- Form labels must use `htmlFor`.
+- Do not rely on color alone to communicate state.
 - Use ARIA where needed.
 - Form labels must be linked with `htmlFor`.
 

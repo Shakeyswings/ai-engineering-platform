@@ -42,6 +42,7 @@ Tasks:
 
 ### Phase 1 - Dashboard and Core Cards
 
+Status: pending on this branch.
 Status: partially implemented.
 
 Target components:
@@ -190,4 +191,5 @@ Do not delete or reset work until a stable branch is confirmed running.
 
 ## Current Next Action
 
+Complete Phase 0 governance on `ai-governance-clean-restart`, verify locally, then continue Phase 1 in a separate commit.
 Complete Phase 0 governance, then audit the existing dashboard components against `UI_CONSTRAINTS.md` before continuing to Phase 2.

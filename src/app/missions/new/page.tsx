@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { saveMission } from "@/lib/mission-store";
 import type { Mission, Priority } from "@/types/mission";
 
+const inputClass = "w-full rounded-md border border-[var(--border-default)] bg-[var(--bg-tertiary)] p-3 text-[14px] leading-[1.6] text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-cyan)]";
+
 export default function NewMissionPage() {
   const router = useRouter();
 
@@ -56,59 +58,30 @@ export default function NewMissionPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-950 p-8 text-white">
+    <main className="min-h-screen bg-[var(--bg-primary)] p-8 text-[var(--text-primary)]">
       <section className="mx-auto max-w-4xl space-y-8">
         <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-cyan-400">
+          <p className="text-[12px] font-medium uppercase leading-[1.5] tracking-[0.08em] text-[var(--accent-cyan)]">
             New Mission
           </p>
-          <h1 className="mt-4 text-4xl font-bold">Create a Mission</h1>
-          <p className="mt-3 text-slate-300">
+          <h1 className="mt-4 text-[48px] font-bold leading-[1.1]">Create a Mission</h1>
+          <p className="mt-3 text-[14px] leading-[1.6] text-[var(--text-secondary)]">
             Define the work clearly so the platform can generate a structured plan.
           </p>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <input
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            placeholder="Mission title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
+        <div className="space-y-4 rounded-lg border border-[var(--border-default)] bg-[var(--bg-secondary)] p-6">
+          <input className={inputClass} placeholder="Mission title" value={title} onChange={(event) => setTitle(event.target.value)} />
 
-          <textarea
-            className="min-h-28 w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            placeholder="Objective"
-            value={objective}
-            onChange={(event) => setObjective(event.target.value)}
-          />
+          <textarea className={`${inputClass} min-h-28`} placeholder="Objective" value={objective} onChange={(event) => setObjective(event.target.value)} />
 
-          <textarea
-            className="min-h-28 w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            placeholder="Context"
-            value={context}
-            onChange={(event) => setContext(event.target.value)}
-          />
+          <textarea className={`${inputClass} min-h-28`} placeholder="Context" value={context} onChange={(event) => setContext(event.target.value)} />
 
-          <textarea
-            className="min-h-28 w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            placeholder="Constraints"
-            value={constraints}
-            onChange={(event) => setConstraints(event.target.value)}
-          />
+          <textarea className={`${inputClass} min-h-28`} placeholder="Constraints" value={constraints} onChange={(event) => setConstraints(event.target.value)} />
 
-          <textarea
-            className="min-h-28 w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            placeholder="Success criteria"
-            value={successCriteria}
-            onChange={(event) => setSuccessCriteria(event.target.value)}
-          />
+          <textarea className={`${inputClass} min-h-28`} placeholder="Success criteria" value={successCriteria} onChange={(event) => setSuccessCriteria(event.target.value)} />
 
-          <select
-            className="w-full rounded-xl border border-slate-700 bg-slate-950 p-3"
-            value={priority}
-            onChange={(event) => setPriority(event.target.value as Priority)}
-          >
+          <select className={inputClass} value={priority} onChange={(event) => setPriority(event.target.value as Priority)}>
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
@@ -118,7 +91,7 @@ export default function NewMissionPage() {
           <button
             onClick={createMission}
             disabled={loading}
-            className="w-full rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 hover:bg-cyan-300 disabled:opacity-50"
+            className="w-full rounded-lg bg-[var(--accent-cyan)] px-4 py-3 text-[14px] font-semibold leading-[1.6] text-[var(--text-inverted)] transition duration-150 hover:brightness-110 disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-cyan)]"
           >
             {loading ? "Generating Mission..." : "Generate Mission Plan"}
           </button>
