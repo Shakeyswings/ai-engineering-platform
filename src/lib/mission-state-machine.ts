@@ -31,7 +31,7 @@ const transitions: Record<MissionStatus, MissionStatus[]> = {
 const terminalStatuses = new Set<MissionStatus>(["Saved"]);
 
 export function getAllowedMissionTransitions(status: MissionStatus): MissionStatus[] {
-  return transitions[status] ?? [];
+  return [...(transitions[status] ?? [])];
 }
 
 export function isTerminalMissionStatus(status: MissionStatus): boolean {
