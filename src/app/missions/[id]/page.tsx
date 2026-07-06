@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -23,6 +23,16 @@ export default function MissionWorkspacePage() {
     );
   }
 
+  return <MissionWorkspace mission={mission} setMission={setMission} />;
+}
+
+function MissionWorkspace({
+  mission,
+  setMission,
+}: {
+  mission: Mission;
+  setMission: (mission: Mission) => void;
+}) {
   const output = mission.output;
 
   function handleSaveWorkflow() {
