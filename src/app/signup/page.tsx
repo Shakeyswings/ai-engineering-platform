@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";  // ← FIXED!
+import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
@@ -9,6 +9,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [confirmationSent, setConfirmationSent] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
@@ -17,7 +18,13 @@ export default function SignupPage() {
     setLoading(true);
     setError("");
 
-    const { error } = await supabase.auth.signUp({
+    if (!supabase) {
+      setError("Supabase is not configured. Please check your environment variables.");
+      setLoading(false);
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -26,9 +33,39 @@ export default function SignupPage() {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push("/");
+      // Check if email confirmation is required
+      if (data?.user && !data.session) {
+        setConfirmationSent(true);
+        setLoading(false);
+      } else if (data?.session) {
+        // User is immediately signed in, redirect to home
+        router.push("/");
+      }
     }
   };
+
+  if (confirmationSent) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0F1419]">
+        <div className="bg-[#1A1F2E] p-8 rounded-lg border border-[#2D3748] w-full max-w-md text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Check Your Email</h1>
+          <p className="text-[#A0AEC0] mb-4">
+            We've sent a confirmation link to <strong>{email}</strong>. Please check your email and click the link to confirm your account.
+          </p>
+          <button
+            onClick={() => {
+              setConfirmationSent(false);
+              setEmail("");
+              setPassword("");
+            }}
+            className="w-full py-2 bg-[#00D4FF] text-[#0F1419] font-semibold rounded hover:bg-[#00D4FF]/80 transition"
+          >
+            Back to Signup
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0F1419]">
@@ -55,9 +92,7 @@ export default function SignupPage() {
               required
             />
           </div>
-          {error && (
-            <div className="text-red-500 text-sm">{error}</div>
-          )}
+          {error && <div className="text-red-500 text-sm">{error}</div>}
           <button
             type="submit"
             disabled={loading}
