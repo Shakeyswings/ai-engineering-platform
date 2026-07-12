@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+desktop.ini
 
 # debug
 npm-debug.log*
@@ -39,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/settings.json
+
+# OS
+**/ai-engineering-platform
+**/ai-engineering-platform - Copy
