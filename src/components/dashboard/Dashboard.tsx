@@ -21,7 +21,7 @@ const activity = ["Governance branch verified", "Design tokens installed", "Miss
   { id: "mission-1", title: "Supabase Persistence Layer", objective: "Persist generated missions, outputs, and approval state into Supabase with scoped access.", status: "In Progress" as const, complexity: "High" as const, progress: 68, completedCount: 7, nextMilestone: 10 },
   { id: "mission-2", title: "Mission Evaluation Engine", objective: "Score mission outputs across accuracy, completeness, usability, risk, and format compliance.", status: "Review" as const, complexity: "Medium" as const, progress: 82, completedCount: 8, nextMilestone: 10 },
   { id: "mission-3", title: "Workflow Library Index", objective: "Create a reusable library for saved mission patterns, prompts, and operational playbooks.", status: "Approved" as const, complexity: "Medium" as const, progress: 90, completedCount: 9, nextMilestone: 10 },
-];
+]];
 
 const activity = ["Schema imported into Supabase", "Mission workflow shell committed", "Settings page verified environment keys", "Dashboard route refreshed", "Approval policy registered"];
 
@@ -30,8 +30,7 @@ export default function Dashboard() {
   const [toastVisible, setToastVisible] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">
-    <div className="min-h-screen bg-[var(--bg-primary)] font-['Inter'] text-[var(--text-primary)]">
+    <div className="min-h-screen bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">    <div className="min-h-screen bg-[var(--bg-primary)] font-['Inter'] text-[var(--text-primary)]">
       <div className="flex">
         <Sidebar currentPath="/" />
         <div className="flex min-h-screen flex-1 flex-col">
@@ -58,7 +57,8 @@ export default function Dashboard() {
               <h2 className="mt-4 text-[48px] font-bold leading-[1.1]">Operational Mission Control</h2>
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 <StatusIndicator status="24 missions deployed" tone="success" />
-                <StatusIndicator status="96% success rate" tone="info" />
+                <StatusIndicator status="96% success ra-[;  
+                 mjku . te" tone="info" />
                 <StatusIndicator status="96% approval rate" tone="info" />
                 <StatusIndicator status="12 day streak" tone="inProgress" />
               </div>
@@ -84,7 +84,7 @@ export default function Dashboard() {
             <section className="mb-8 grid gap-6 xl:grid-cols-[1fr_320px]">
               <div>
                 <h3 className="mb-6 text-[24px] font-semibold leading-[1.3]">Active Missions</h3>
-                <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
+                <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">NM
                   {missions.map((mission) => <MissionCard key={mission.id} {...mission} />)}
                 </div>
               </div>
