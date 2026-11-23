@@ -49,6 +49,7 @@ export const missionOutputSchema = z.object({
   next_actions: z.array(z.string()),
 });
 
+export type MissionStatusContract = z.infer<typeof missionStatusSchema>;
 export type MissionInputContract = z.infer<typeof missionInputSchema>;
 export type MissionOutputContract = z.infer<typeof missionOutputSchema>;
 
