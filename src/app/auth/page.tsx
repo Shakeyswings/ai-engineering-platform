@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { getBrowserSupabase } from "@/lib/supabase/client";
-
+import { createClient } from "@/lib/supabase/client";
 export default function AuthPage() {
-  const supabase = getBrowserSupabase();
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
